@@ -10,6 +10,7 @@ class App extends Component {
 
   setParagraphLength = (event) => {
     const state = {...this.state}
+    console.log(event.target.value)
 
   };
 
