@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
+import Validator from './Validator/Validator'
+import CharComponent from './CharCompontent/CharComponent'
 
 class App extends Component {
 
@@ -12,8 +14,6 @@ class App extends Component {
 
     setParagraphLength = (event) => {
         const inputs = {...this.state.inputs};
-        console.log(inputs);
-        console.log(event.target.value);
         inputs.inputValue = event.target.value;
         inputs.inputLength = inputs.inputValue.length;
         this.setState(
@@ -23,12 +23,24 @@ class App extends Component {
 
 
     render() {
+        const characters = (
+            <div>
+                {this.state.inputs.inputValue.split('').map((char, index) => {
+                    return (
+                        <CharComponent character={char} key={index}/>
+                    )
+                })}
+            </div>
+        );
+
         return (
             <div className="App">
                 <input type="text"
                        onChange={(event) => this.setParagraphLength(event)}
                        value={this.state.inputs.inputValue}/>
                 <p>Input length is: {this.state.inputs.inputLength}</p>
+                <Validator inputLength={this.state.inputs.inputLength}/>
+                {characters}
             </div>
         );
     }
