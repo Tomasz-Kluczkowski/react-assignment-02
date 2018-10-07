@@ -4,7 +4,7 @@ import './CharComponent.css'
 
 const charcomponent = (props) => {
     return (
-        <p className="character">{props.character}</p>
+        <p className="character" onClick={props.handleDeleteChar}>{props.character}</p>
     )
 };
 
